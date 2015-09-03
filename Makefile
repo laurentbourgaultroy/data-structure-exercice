@@ -10,10 +10,14 @@ all: test
 	mkdir -p bin
 	$(CC) $(CFLAGS) -o $(BINDIR)/vector main.c $(SOURCES)
 
-test:
+test: bin
 	$(CC) $(CFLAGS) -o $(TESTBIN) test.c $(SOURCES)
 	$(TESTBIN)
+	echo "Running leak test..."
 	valgrind --quiet --leak-check=yes --error-exitcode=1 $(TESTBIN)
 
+bin:
+	mkdir -p bin
+
 clean:
-	rm -f vector
+	rm -rf bin
