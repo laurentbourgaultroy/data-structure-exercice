@@ -1,23 +1,23 @@
 Data Structure Exercise
 =======================
 
-I coded this program as a refresher on C data-structure. You can use it as an example if you need a refresh yourself -it's easy to get spoiled by higher level languages. This code may contains nasty bugs, copy-paste at your own peril. 
+I coded this program to freshen my knowledge on C data structure. You can use it as an example if you need to hone those skill yourself -it's easy to get spoiled by higher level languages. The project use modern practices of software development: a fully automated build, unit tests, static code analysis, and leak detection using valgrind. Poke in the Makefile if you are curious how those have been applied to a C program.
 
-The project use modern practices of software development: a fully automated build, unit tests, static code analysis, and leak detection using valgrind. Poke in the Makefile if you are curious how those have been applied to a C program.
+This code may contains nasty bugs, copy-paste at your own peril. 
 
-# What's in it
+## What's in it
 
 Right now, a resizable vector and a bunch of tests.
 
 Future plan -not in it right now- include an old-fashion linked list, a hash map, a heap, and maybe some more exotic data structures like a rope.
 
-# How to build
+## How to build
 
 You will need the standard GNU C toolchain: make, gcc and the like. [Valgrind](http://valgrind.org) is required for the leak detection part. The project require a Unix-like environment. Building it on Windows may be very hard.
 
 Check the OS specific detail below to install the prerequisite. Then run good-ol `make` in the source directory to build.
 
-## On Mac OS X, 
+### Building on Mac OS X, 
 
 Install the XCode Command-Line tools. You can also install them from XCode directly, but an easier way to get them is to install the [homebrew](http://brew.sh) package manager. The homebrew installer will install them itself. Using that later option will let you install the other tools easily. 
 
@@ -25,7 +25,7 @@ Install [Valgrind](http://valgrind.org). You can compile it from source, or use 
 
 *Note* The homebrew version of valgrind sometime trail with support for the latest version of Mac OS X. If you get error messages about an unsupported version of OS X, use `brew install --HEAD valgrind` to install the latest dev version of valgrind. Be careful, that version may be instable.
 
-##Linux 
+### Building on Linux 
 
 This program was not tested on Linux, but should compile and run without problems. The required tools are usually in a "build-essential" package or equivalent. Install them with your package manager. On Ubuntu: `apt-get install build-essential`. 
 
