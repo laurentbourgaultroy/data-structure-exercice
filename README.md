@@ -1,7 +1,7 @@
 Data Structure Exercise
 =======================
 
-I coded this program to freshen my knowledge on C data structure. You can use it as an example if you need to hone those skill yourself -it's easy to get spoiled by higher level languages. The project use modern practices of software development: a fully automated build, unit tests, static code analysis, and leak detection using valgrind. Poke in the Makefile if you are curious how those have been applied to a C program.
+I coded this program to freshen my knowledge on C data structure. You can use it as an example if you need to hone those skills yourself ­­– it's easy to get spoiled by higher level languages. The project use modern practices of software development: a fully automated build, unit tests, static code analysis, and leak detection using valgrind. Poke in the Makefile if you are curious how those have been applied to a C program.
 
 This code may contains nasty bugs, copy-paste at your own peril. 
 
