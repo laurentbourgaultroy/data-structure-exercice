@@ -1,6 +1,7 @@
-CFLAGS=-Wall
+CFLAGS=-Wall -g
 CC=cc
 BINDIR=bin
+TESTBIN=$(BINDIR)/test
 SOURCES=vector.c
 
 .PHONY: all test clean
@@ -10,8 +11,9 @@ all: test
 	$(CC) $(CFLAGS) -o $(BINDIR)/vector main.c $(SOURCES)
 
 test:
-	$(CC) $(CFLAGS) -o $(BINDIR)/test test.c $(SOURCES)
-	$(BINDIR)/test
+	$(CC) $(CFLAGS) -o $(TESTBIN) test.c $(SOURCES)
+	$(TESTBIN)
+	valgrind --leak-check=yes $(TESTBIN)
 
 clean:
 	rm -f vector

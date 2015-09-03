@@ -4,7 +4,7 @@
 
 const size_t VECTOR_INITIAL_CAPACITY = 8;
 
-void* address_of_index(struct vector *vector, size_t index)
+static void* address_of_index(struct vector *vector, size_t index)
 {
 	char *bytes = (char *) vector->elements;	
 	size_t byte_index = index * vector->element_size;

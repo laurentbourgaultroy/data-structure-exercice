@@ -11,7 +11,8 @@ void vector_start_empty() {
     assert_equals(0, vector.size, "Vector must start empty");
 }
 
-void adding_item_increase_size() {
+void adding_item_increase_size() 
+{
     struct vector vector;
     vector_init(&vector, sizeof(int));
 
@@ -26,23 +27,40 @@ void adding_item_increase_size() {
     }
 }
 
-void added_item_are_accessible() {
-    struct vector vector;
-    vector_init(&vector, sizeof(int));
+void assert_can_insert_up_to_size(struct vector *vector, size_t insert_size)
+{
+    for (size_t i = 0; i < insert_size; i++) 
+    {
+        int *expected_value = NULL;
+        int *actual_value = NULL;
 
-    for (size_t i = 0; i < VECTOR_INITIAL_CAPACITY; i++) {
-        int *expected_value;
-        vector_push(&vector, (void**)&expected_value);
-        *expected_value = 10;
+        vector_push(vector, (void**)&expected_value);
+        *expected_value = i * 10;
 
-        int *actual_value;
-        vector_read(&vector, i, (void**)&actual_value);
+        vector_read(vector, i, (void**)&actual_value);
 
         assert_equals(
             *expected_value, 
             *actual_value, 
             "Reading a value must yield the value affected to it");
     }
+}
+
+void added_item_are_accessible() 
+{
+    struct vector vector;
+    vector_init(&vector, sizeof(int));
+
+    assert_can_insert_up_to_size(&vector, VECTOR_INITIAL_CAPACITY);
+}
+
+void vector_expand_beyond_initial_capacity()
+{
+    struct vector vector;
+    size_t beyond_initial_capacity = VECTOR_INITIAL_CAPACITY * 10000;
+    vector_init(&vector, sizeof(int));
+
+    assert_can_insert_up_to_size(&vector, beyond_initial_capacity);
 }
 
 int main(int argc, char *argv[])
@@ -52,16 +70,11 @@ int main(int argc, char *argv[])
     vector_start_empty();
     adding_item_increase_size();
     added_item_are_accessible();
+    vector_expand_beyond_initial_capacity();
 
     if (errors.count > 0) {
         printf("Unit Tests FAILED!\n\n");
-
-        for (int i = 0; i < errors.count; i++) 
-        {
-            printf("%s\n", errors.messages[i]);
-        }
-
-        printf("\n");
+        display_errors();
 
         return EXIT_FAILURE;
     }
@@ -77,6 +90,15 @@ void init_errors() {
     {
         errors.messages[i] = NULL;
     }
+}
+
+void display_errors() {
+    for (int i = 0; i < errors.count; i++) 
+    {
+        printf("%s\n", errors.messages[i]);
+    }
+
+    printf("\n");
 }
 
 void assert_equals(int expected, int actual, char *message)
