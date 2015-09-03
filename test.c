@@ -5,10 +5,11 @@
 
 void vector_start_empty() {
     struct vector vector;
-
     vector_init(&vector, sizeof(int));
 
     assert_equals(0, vector.size, "Vector must start empty");
+
+    vector_free(&vector);
 }
 
 void adding_item_increase_size() 
@@ -25,6 +26,8 @@ void adding_item_increase_size()
             vector.size, 
             "Vector must increase size when adding items");
     }
+
+    vector_free(&vector);
 }
 
 void assert_can_insert_up_to_size(struct vector *vector, size_t insert_size)
@@ -52,15 +55,19 @@ void added_item_are_accessible()
     vector_init(&vector, sizeof(int));
 
     assert_can_insert_up_to_size(&vector, VECTOR_INITIAL_CAPACITY);
+
+    vector_free(&vector);
 }
 
 void vector_expand_beyond_initial_capacity()
 {
     struct vector vector;
-    size_t beyond_initial_capacity = VECTOR_INITIAL_CAPACITY * 10000;
     vector_init(&vector, sizeof(int));
 
+    size_t beyond_initial_capacity = VECTOR_INITIAL_CAPACITY * 10000;
     assert_can_insert_up_to_size(&vector, beyond_initial_capacity);
+
+    vector_free(&vector);
 }
 
 int main(int argc, char *argv[])

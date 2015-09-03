@@ -9,7 +9,7 @@ This code may contains nasty bugs, copy-paste at your own peril.
 
 Right now, a resizable vector and a bunch of tests.
 
-Future plan -not in it right now- include an old-fashion linked list, a hash map, a heap, and maybe some more exotic data structures like a rope.
+Future plan – not in it right now – include an old-fashion linked list, a hash map, a heap, and maybe some more exotic data structures like a rope.
 
 ## How to build
 

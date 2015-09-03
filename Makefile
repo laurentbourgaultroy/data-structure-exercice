@@ -1,4 +1,4 @@
-CFLAGS=-Wall -g
+CFLAGS=-Wall -g -O0
 CC=cc
 BINDIR=bin
 TESTBIN=$(BINDIR)/test
@@ -13,7 +13,7 @@ all: test
 test:
 	$(CC) $(CFLAGS) -o $(TESTBIN) test.c $(SOURCES)
 	$(TESTBIN)
-	valgrind --leak-check=yes $(TESTBIN)
+	valgrind --quiet --leak-check=yes --error-exitcode=1 $(TESTBIN)
 
 clean:
 	rm -f vector
